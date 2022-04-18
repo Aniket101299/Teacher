@@ -5,19 +5,70 @@ const router = express.Router();
 const Teacher = require("../Models/teachermodel");
 
 // ----------------------------- TEACHER CRUD -----------------------------------
-router.get("", async (req, res) => {
+
+
+router.get("/teachers", async (req, res) => {
     try {
-      const teacher = await Teacher.find()
-        .lean()
-        .exec();
+      let value;
+      let filter = {};
+      if(req.query.gender) {
+        filter.gender = req.query.gender;
+      } 
+      if(filter == {}) {
+        value = await Teacher.find().lean().exec();
+      } else {
+        value = await Teacher.find(filter).lean().exec();
+      }
+      
+      return res.send(value);
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  });
+
+
+
+  router.get("/teachers/ageasc", async (req, res) => {
+    try {
+      const age = await Teacher.find().sort({age:1}).lean().exec();
   
-      return res.send(teacher);
+      return res.send(age);
     } catch (err) {
       return res.status(500).send(err.message);
     }
   });
   
-  router.post("", async (req, res) => {
+
+
+  router.get("/teachers/agedec", async (req, res) => {
+    try {
+      const age = await Teacher.find().sort({age:-1}).lean().exec();
+  
+      return res.send(age);
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  });
+
+
+
+
+
+
+
+// router.get("", async (req, res) => {
+//     try {
+//       const teacher = await Teacher.find()
+//         .lean()
+//         .exec();
+  
+//       return res.send(teacher);
+//     } catch (err) {
+//       return res.status(500).send(err.message);
+//     }
+//   });
+  
+  router.post("/teachers", async (req, res) => {
     try {
       const teacher = await Teacher.create(req.body);
   

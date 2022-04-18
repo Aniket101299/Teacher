@@ -12,9 +12,9 @@ const app = express();
 app.use(express.json());
 
 
-app.use("/admins",adminController);
-app.use("/teachers",teacherController);
-app.use("/class",classController);
+app.use("",adminController);
+app.use("",teacherController);
+app.use("",classController);
 
 
 /*

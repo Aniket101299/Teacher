@@ -5,8 +5,8 @@ const router = express.Router();
 
 const Admin = require("../Models/adminmodel");
 
-// ----------------------------- TEACHER CRUD -----------------------------------
-router.get("", async (req, res) => {
+// ----------------------------- ADMIN CRUD -----------------------------------
+router.get("/admins", async (req, res) => {
     try {
       const admin = await Admin.find()
         .lean()
@@ -18,7 +18,7 @@ router.get("", async (req, res) => {
     }
   });
   
-  router.post("", async (req, res) => {
+  router.post("/admins", async (req, res) => {
     try {
       const admin = await Admin.create(req.body);
   

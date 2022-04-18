@@ -4,8 +4,8 @@ const router = express.Router();
 
 const Class = require("../Models/classmodel");
 
-// ----------------------------- TEACHER CRUD -----------------------------------
-router.get("", async (req, res) => {
+// ----------------------------- CLASS CRUD -----------------------------------
+router.get("/class", async (req, res) => {
     try {
       const classes = await Class.find()
         .populate({ path: "teacher_id", select: "name" })
@@ -18,7 +18,7 @@ router.get("", async (req, res) => {
     }
   });
   
-  router.post("", async (req, res) => {
+  router.post("/class", async (req, res) => {
     try {
       const classes = await Class.create(req.body);
   

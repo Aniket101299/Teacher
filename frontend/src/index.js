@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter} from 'react-router-dom';
+import { RegistrationContextProvider } from './Components/Context/RegistrationContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     {/* RegistrationContextProvider gives you access to all of the values  */}
+    <RegistrationContextProvider>   
+      <BrowserRouter>
+         <App />
+      </BrowserRouter>
+    </RegistrationContextProvider>
   </React.StrictMode>
 );
 
@@ -15,3 +22,6 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+// useNavigate, Navigate, Routes, Route --> from BrowserRouter provider
