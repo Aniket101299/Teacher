@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {Link} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import { RegistrationContext } from "../Context/RegistrationContext";
 import "./Login.css";
 
@@ -14,7 +14,7 @@ export const Login = () => {
     } = useContext(RegistrationContext);
 
     if(!name || !age || !username || !password) {
-       <Link to="/signup"/> 
+       <Navigate to="/signup"/> 
     }
 
     return(
